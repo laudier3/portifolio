@@ -16,6 +16,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Image from "next/image";
 import { HiMenu, HiX } from 'react-icons/hi'; // Ícones de menu
 import mascote from "../image/mascote.png"
+import CodeTypingBackground from '@/app/components/CodeTypingBackground'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -101,7 +102,7 @@ export default function Home() {
         {/* Header */}
         <header className="sticky top-0 bg-black/60 backdrop-blur-md shadow-md z-10">
           <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            
+
             {/* Nome estilizado */}
             <motion.h1
               initial={{ opacity: 0, y: -10 }}
@@ -150,10 +151,13 @@ export default function Home() {
             </motion.nav>
           )}
         </header>
+        
         <main className="flex-1">
           {/* Hero com mascote */}
-          <section className="py-20">
-            <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+          <section className="relative py-20 overflow-hidden">
+            {/* 👇 Fundo com código sendo escrito */}
+
+            <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -168,28 +172,38 @@ export default function Home() {
                   desenvolvimento web, APIs, integrações e aplicações escaláveis.
                 </p>
                 <div className="flex gap-4 mt-6">
-                  <Link href="#projetos" className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:scale-105 transition transform">Ver Projetos</Link>
-                  <Link href="#contato" className="border border-indigo-500 text-indigo-300 px-6 py-3 rounded-lg font-medium hover:bg-indigo-800/30 hover:scale-105 transition">Entrar em Contato</Link>
+                  <Link
+                    href="#projetos"
+                    className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:scale-105 transition transform"
+                  >
+                    Ver Projetos
+                  </Link>
+                  <Link
+                    href="#contato"
+                    className="border border-indigo-500 text-indigo-300 px-6 py-3 rounded-lg font-medium hover:bg-indigo-800/30 hover:scale-105 transition"
+                  >
+                    Entrar em Contato
+                  </Link>
                 </div>
               </motion.div>
 
-              {/* Mascote animado */}
+              {/* Mascote com o código digitando ao fundo */}
               <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ repeat: Infinity, duration: 3 }}
-                className="flex justify-center"
+                className="relative flex justify-center"
               >
                 <Image
-                    src={mascote} // coloque o arquivo dentro da pasta /public
-                    alt="Mascote Dev"
-                    width={300}
-                    height={300}
-                    className="w-72 h-78 drop-shadow-[0_0_25px_rgba(59,130,246,0.8)]"
-                  /> 
+                  src={mascote}
+                  alt="Mascote Dev"
+                  width={300}
+                  height={300}
+                  className="w-72 left-25 h-78 drop-shadow-[0_0_25px_rgba(59,130,246,0.8)] relative z-10"
+                />
+                 <CodeTypingBackground typingSpeed={80} />
               </motion.div>
             </div>
           </section>
-
           {/* Métricas */}
           <section id="skills" className="py-10">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -200,9 +214,9 @@ export default function Home() {
                   className="bg-black/40 p-6 rounded-lg shadow-lg flex flex-col items-center space-y-2 text-center border border-indigo-500/30"
                 >
                   <div className="text-3xl">{m.icon}</div>
-                <a href={m.src} rel="noopener noreferrer">
-                  <p className="text-gray-400">{m.title}</p>
-                  <h3 className="text-2xl font-bold text-indigo-300">{m.value}</h3>
+                  <a href={m.src} rel="noopener noreferrer">
+                    <p className="text-gray-400">{m.title}</p>
+                    <h3 className="text-2xl font-bold text-indigo-300">{m.value}</h3>
                   </a>
                 </motion.div>
               ))}
@@ -237,54 +251,54 @@ export default function Home() {
           </section>
 
           {/* Depoimentos */}
-         <section className="py-20 bg-black/40 border-t border-indigo-500/20">
-      <div className="max-w-3xl mx-auto px-6 text-center space-y-10">
+          <section className="py-20 bg-black/40 border-t border-indigo-500/20">
+            <div className="max-w-3xl mx-auto px-6 text-center space-y-10">
 
-        {/* Título */}
-        <h2 className="text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
-          Recomendações
-        </h2>
+              {/* Título */}
+              <h2 className="text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
+                Recomendações
+              </h2>
 
-        {/* Cartão de recomendação */}
-        <div
-          className="relative bg-black/30 border border-indigo-500/10 rounded-xl p-8 shadow-lg backdrop-blur-md transition-all duration-300"
-        >
-          <blockquote className="text-xl italic text-gray-200 leading-relaxed">
-            “{testimonials[current].quote}”
-          </blockquote>
-          <p className="mt-6 font-semibold text-indigo-300 text-lg">
-            {testimonials[current].name},{' '}
-            <span className="text-gray-400 font-normal">
-              {testimonials[current].role}
-            </span>
-          </p>
-        </div>
+              {/* Cartão de recomendação */}
+              <div
+                className="relative bg-black/30 border border-indigo-500/10 rounded-xl p-8 shadow-lg backdrop-blur-md transition-all duration-300"
+              >
+                <blockquote className="text-xl italic text-gray-200 leading-relaxed">
+                  “{testimonials[current].quote}”
+                </blockquote>
+                <p className="mt-6 font-semibold text-indigo-300 text-lg">
+                  {testimonials[current].name},{' '}
+                  <span className="text-gray-400 font-normal">
+                    {testimonials[current].role}
+                  </span>
+                </p>
+              </div>
 
-        {/* Navegação com bolinhas */}
-        <div className="flex justify-center space-x-3">
-          {testimonials.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrent(idx)}
-              className={`w-4 h-4 rounded-full border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-300 
+              {/* Navegação com bolinhas */}
+              <div className="flex justify-center space-x-3">
+                {testimonials.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrent(idx)}
+                    className={`w-4 h-4 rounded-full border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-300 
                 ${idx === current
-                  ? 'bg-indigo-400 border-indigo-300 scale-110'
-                  : 'bg-gray-600 border-gray-500 hover:bg-indigo-300'
-                }`}
-              aria-label={`Mostrar recomendação de ${testimonials[idx].name}`}
-              tabIndex={0}
-              role="button"
-            />
-          ))}
-        </div>
+                        ? 'bg-indigo-400 border-indigo-300 scale-110'
+                        : 'bg-gray-600 border-gray-500 hover:bg-indigo-300'
+                      }`}
+                    aria-label={`Mostrar recomendação de ${testimonials[idx].name}`}
+                    tabIndex={0}
+                    role="button"
+                  />
+                ))}
+              </div>
 
-        {/* Dica de teclado */}
-        <p className="text-sm text-gray-500">
-          Use as teclas <kbd className="px-1 py-0.5 bg-gray-700 text-white rounded">←</kbd> e <kbd className="px-1 py-0.5 bg-gray-700 text-white rounded">→</kbd> para navegar
-        </p>
+              {/* Dica de teclado */}
+              <p className="text-sm text-gray-500">
+                Use as teclas <kbd className="px-1 py-0.5 bg-gray-700 text-white rounded">←</kbd> e <kbd className="px-1 py-0.5 bg-gray-700 text-white rounded">→</kbd> para navegar
+              </p>
 
-      </div>
-    </section>
+            </div>
+          </section>
 
         </main>
 
