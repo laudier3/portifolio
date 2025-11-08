@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { api } from "../../../lib/api"; // importa a instância
+import { api } from "@/app/lib/api"; // importa a instância
 
 type CompraForm = {
   userId: string;
