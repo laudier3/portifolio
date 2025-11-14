@@ -20,8 +20,8 @@ const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind", "Stripe", "Prisma"],
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPwhrG0pqIAfJm-PrR2sUeALy7481iHK__vw&s",
-    github: "https://github.com/laudier3/urlcurts",
-    demo: "https://urlcurt.com.br",
+    github: "https://github.com/seu-repo",
+    demo: "https://seu-projeto.com",
   },
   {
     title: "Painel Administrativo",

@@ -33,10 +33,10 @@ ChartJS.register(
 // 🔧 Métricas
 const metrics = [
   { title: "Projetos Concluídos", value: "12", src: "/projetos", icon: "🛠️" },
-  { title: "Anos de Experiência", value: "3", icon: "📆" },
+  { title: "Anos de Experiência", value: "8", icon: "📆" },
   { title: "Tecnologias", value: "15+", icon: "🧠" },
   { title: "Certificações", value: "4", icon: "📜" },
-  { title: "Clientes Atendidos", value: "10+", icon: "🤝" },
+  { title: "Clientes Atendidos", value: "30+", icon: "🤝" },
   { title: "Artigos Publicados", value: "7", icon: "✍️" },
 ];
 
@@ -157,10 +157,10 @@ export default function Home() {
             {/* Menu Desktop Moderno */}
             <nav className="hidden md:flex space-x-1 items-center bg-black/30 backdrop-blur-sm rounded-full border border-indigo-400/20 px-3 py-2 shadow-inner shadow-indigo-900/30">
               {[
-                { label: "Projetos", href: "#projetos" },
-                { label: "Habilidades", href: "#skills" },
-                { label: "Serviços", href: "#servicos" },
-                { label: "Contato", href: "#contato" },
+                { label: "Projetos", href: "/projetos" },
+                { label: "Habilidades", href: "/skills" },
+                { label: "Serviços", href: "/servicos" },
+                { label: "Contato", href: "/contato" },
               ].map((link) => (
                 <Link
                   key={link.href}
@@ -183,10 +183,10 @@ export default function Home() {
               className="md:hidden px-6 pb-4 flex flex-col space-y-3 bg-black/85 backdrop-blur-lg border-t border-indigo-500/20"
             >
               {[
-                { label: "Projetos", href: "#projetos" },
-                { label: "Habilidades", href: "#skills" },
-                { label: "Serviços", href: "#servicos" },
-                { label: "Contato", href: "#contato" },
+                { label: "Projetos", href: "/projetos" },
+                { label: "Habilidades", href: "/skills" },
+                { label: "Serviços", href: "/servicos" },
+                { label: "Contato", href: "/contato" },
               ].map((link) => (
                 <Link
                   key={link.href}
@@ -226,7 +226,7 @@ export default function Home() {
                     Ver Projetos
                   </Link>
                   <Link
-                    href="#contato"
+                    href="/contato"
                     className="border border-indigo-500 text-indigo-300 px-6 py-3 rounded-lg font-medium hover:bg-indigo-800/30 hover:scale-105 transition"
                   >
                     Entrar em Contato
@@ -315,11 +315,11 @@ export default function Home() {
                   {
                     name: "JavaScript",
                     img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-                  }, // ✅ Adicionado
+                  },
                   {
                     name: "Redux",
                     img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
-                  }, // ✅ Adicionado
+                  },
                   {
                     name: "Nginx",
                     img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
@@ -335,6 +335,32 @@ export default function Home() {
                   {
                     name: "Git",
                     img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+                  },
+
+                  // Novos adicionados
+                  {
+                    name: "Tailwind CSS",
+                    img: "tailwind.svg", //`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg`,
+                  },
+                  {
+                    name: "Stripe",
+                    img: "stripe.svg", //"https://raw.githubusercontent.com/devicons/devicon/master/icons/stripe/stripe-original.svg",
+                  },
+                  {
+                    name: "Material UI",
+                    img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg",
+                  },
+                  {
+                    name: "Bootstrap",
+                    img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg",
+                  },
+                  {
+                    name: "Styled Components",
+                    img: "stylend.svg",
+                  }, // colocar arquivo local em public/projetos/
+                  {
+                    name: "API Mercado Pago",
+                    img: "mercadopago.svg",
                   },
                 ].map((tech) => (
                   <SwiperSlide key={tech.name}>
@@ -401,121 +427,105 @@ export default function Home() {
           </section>
 
           {/* Gráfico */}
-          <section className="py-10">
-            <div className="max-w-4xl mx-auto px-6 bg-black/50 p-6 rounded-lg shadow border border-indigo-500/30">
-              <Line data={chartData} />
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-6">
+              <div
+                className="
+                  relative
+                  bg-black/40 
+                  backdrop-blur-xl 
+                  border border-indigo-500/40 
+                  shadow-[0_0_25px_rgba(99,102,241,0.5)] 
+                  rounded-2xl 
+                  p-8
+                  overflow-hidden
+                "
+              >
+                {/* Luz de fundo decorativa */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 blur-3xl opacity-40"></div>
+
+                {/* Título estilizado */}
+                <h2 className="text-3xl font-bold text-center mb-6 text-transparent bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text drop-shadow-lg relative z-10">
+                  Commits por Mês
+                </h2>
+
+                <div className="relative z-10">
+                  <Line data={chartData} />
+                </div>
+              </div>
             </div>
           </section>
-
-          {/* Slider de Habilidades */}
-          {/*<section id="habilidades" className="py-16 bg-black/40 border-t border-indigo-500/20">
-            <div className="max-w-6xl mx-auto px-6 text-center">
-              <h2 className="text-3xl font-bold text-white mb-8 drop-shadow-md">
-                Habilidades Técnicas
-              </h2>
-
-              <Swiper
-                modules={[Autoplay]}
-                spaceBetween={30}
-                slidesPerView={5}
-                loop={true}
-                autoplay={{
-                  delay: 1500,
-                  disableOnInteraction: false,
-                }}
-                breakpoints={{
-                  320: { slidesPerView: 2 },
-                  640: { slidesPerView: 3 },
-                  1024: { slidesPerView: 5 },
-                }}
-                className="w-full"
-              >
-                {[
-                   { name: 'Next.js', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
-                   { name: 'React.js', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-                   { name: 'Node.js', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
-                   { name: 'Express.js', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
-                   { name: 'Prisma ORM', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg' },
-                   { name: 'PostgreSQL', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
-                   { name: 'HTML5', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-                   { name: 'CSS3', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-                   { name: 'TypeScript', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
-                   { name: 'JavaScript', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' }, // ✅ Adicionado
-                   { name: 'Redux', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg' }, // ✅ Adicionado
-                   { name: 'Nginx', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg' },
-                   { name: 'Cloud Computing', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg' },
-                   { name: 'Docker', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-                   { name: 'Git', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-                ].map((tech) => (
-                  <SwiperSlide key={tech.name}>
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
-                      className="bg-black/50 p-6 rounded-lg shadow-lg border border-indigo-500/30 flex flex-col items-center justify-center space-y-3 hover:bg-indigo-950/40"
-                    >
-                      <img
-                        src={tech.img}
-                        alt={tech.name}
-                        className="w-16 h-16 object-contain drop-shadow-[0_0_10px_rgba(99,102,241,0.5)]"
-                      />
-                      <p className="text-indigo-300 font-medium">{tech.name}</p>
-                    </motion.div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </section>*/}
 
           {/* Depoimentos */}
-          <section className="py-20 bg-black/40 border-t border-indigo-500/20">
-            <div className="max-w-3xl mx-auto px-6 text-center space-y-10">
-              <h2 className="text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
-                Recomendações
-              </h2>
+          <section className="py-24 bg-black/30 border-t border-indigo-500/20 relative overflow-hidden">
 
-              <div className="relative bg-black/30 border border-indigo-500/10 rounded-xl p-8 shadow-lg backdrop-blur-md transition-all duration-300">
-                <blockquote className="text-xl italic text-gray-200 leading-relaxed">
-                  “{testimonials[current].quote}”
-                </blockquote>
-                <p className="mt-6 font-semibold text-indigo-300 text-lg">
-                  {testimonials[current].name},{" "}
-                  <span className="text-gray-400 font-normal">
-                    {testimonials[current].role}
-                  </span>
-                </p>
-              </div>
+{/* Luzes de fundo para efeito futurista */}
+<div className="absolute inset-0 pointer-events-none">
+  <div className="absolute -top-20 -left-20 w-72 h-72 bg-indigo-700/30 rounded-full blur-3xl"></div>
+  <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+</div>
 
-              <div className="flex justify-center space-x-3">
-                {testimonials.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrent(idx)}
-                    className={`w-4 h-4 rounded-full border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-300 
-                      ${
-                        idx === current
-                          ? "bg-indigo-400 border-indigo-300 scale-110"
-                          : "bg-gray-600 border-gray-500 hover:bg-indigo-300"
-                      }`}
-                    aria-label={`Mostrar recomendação de ${testimonials[idx].name}`}
-                    tabIndex={0}
-                    role="button"
-                  />
-                ))}
-              </div>
+<div className="max-w-4xl mx-auto px-6 text-center space-y-14 relative z-10">
 
-              <p className="text-sm text-gray-500">
-                Use as teclas{" "}
-                <kbd className="px-1 py-0.5 bg-gray-700 text-white rounded">
-                  ←
-                </kbd>{" "}
-                e{" "}
-                <kbd className="px-1 py-0.5 bg-gray-700 text-white rounded">
-                  →
-                </kbd>{" "}
-                para navegar
-              </p>
-            </div>
-          </section>
+  {/* Título moderno com glow */}
+  <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-gradient-to-r 
+    from-indigo-300 via-purple-300 to-pink-300 bg-clip-text drop-shadow-[0_0_25px_rgba(139,92,246,0.5)]">
+    Recomendações
+  </h2>
+
+  {/* Card com animação e glassmorphism */}
+  <div className="
+    relative p-10 rounded-2xl overflow-hidden
+    bg-gradient-to-br from-black/40 to-black/20
+    backdrop-blur-xl border border-indigo-500/30
+    shadow-[0_0_25px_rgba(99,102,241,0.4)]
+    transition-transform duration-500 hover:scale-[1.02]
+  ">
+    {/* Detalhes decorativos */}
+    <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl"></div>
+    <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/10 rounded-full blur-xl"></div>
+
+    <blockquote className="relative text-2xl italic text-gray-200 leading-relaxed z-10">
+      “{testimonials[current].quote}”
+    </blockquote>
+
+    <p className="mt-8 font-semibold text-indigo-300 text-xl z-10 relative">
+      {testimonials[current].name}
+      <span className="text-gray-400 font-normal"> — {testimonials[current].role}</span>
+    </p>
+  </div>
+
+  {/* Navegadores estilizados futuristas */}
+  <div className="flex justify-center space-x-4">
+    {testimonials.map((_, idx) => (
+      <button
+        key={idx}
+        onClick={() => setCurrent(idx)}
+        className={`
+          w-5 h-5 rounded-full transition-all duration-300 
+          shadow-md shadow-indigo-500/20
+          ${
+            idx === current
+              ? "bg-gradient-to-r from-indigo-400 to-purple-400 scale-125 shadow-[0_0_12px_rgba(139,92,246,0.8)]"
+              : "bg-gray-500 hover:bg-indigo-300/80"
+          }
+        `}
+        aria-label={`Mostrar recomendação ${idx + 1}`}
+      />
+    ))}
+  </div>
+
+  {/* Instruções */}
+  <p className="text-sm text-gray-400 opacity-80">
+    Use as teclas{" "}
+    <kbd className="px-1 py-0.5 bg-gray-700 text-white rounded">←</kbd>{" "}
+    e{" "}
+    <kbd className="px-1 py-0.5 bg-gray-700 text-white rounded">→</kbd>{" "}
+    para navegar
+  </p>
+</div>
+</section>
+
         </main>
 
         {/* Footer */}
